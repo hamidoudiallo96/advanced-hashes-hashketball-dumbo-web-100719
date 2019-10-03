@@ -1,4 +1,4 @@
-# write your code here
+require 'pry'
 
 def game_hash
   stats_hash = {}
@@ -127,19 +127,21 @@ def game_hash
       }
     ]
   }
-  stats_hash
+  return stats_hash
 end
 
 def num_points_scored(name)
+  players_points = 0
   hash = game_hash
   hash.each do |home_away, info|
     info[:players].each do |player|
       if player[:player_name] == name
-        return player[:points]
+         return player[:points]
       end
     end
   end
 end
+num_points_scored("Ben Gordon")
 
 def shoe_size(name)
   hash = game_hash
@@ -167,7 +169,7 @@ def team_names
   hash.each do |home_away,info|
     result_array << hash[home_away][:team_name]
   end
-  result_array
+  return result_array
 end
 
 def player_numbers (team_name)
@@ -194,7 +196,7 @@ def player_stats (name)
       end
     end
   end
-  player_stat_hash
+  return player_stat_hash
 end
 
 
@@ -209,7 +211,25 @@ def big_shoe_rebounds
       end
     end
   end
-  player_rebound_stats
+  return player_rebound_stats
 end
 
-p big_shoe_rebounds
+
+
+
+# Bonus
+
+def most_points_scored
+  most_points = 0
+  game_hash.each do |home_away,info|
+    info[:players].each do |player|
+      if player[:points] > most_points
+          most_points = player[:points]
+      end
+    end
+  end
+  return most_points
+end
+
+
+
